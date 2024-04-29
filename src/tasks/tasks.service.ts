@@ -1,4 +1,6 @@
-import { Injectable, HttpCode, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 // create an object
 export interface User {
@@ -31,8 +33,7 @@ export class TasksService {
     return taskFound;
   }
 
-  createTask(task: any) {
-    console.log(task);
+  createTask(task: CreateTaskDto) {
     this.tasks.push({
       ...task,
       id: this.tasks.length + 1,
@@ -40,7 +41,8 @@ export class TasksService {
     return task;
   }
 
-  updateTask() {
+  updateTask(task: UpdateTaskDto) {
+    console.log(task);
     return 'Creating Tasks';
   }
 
