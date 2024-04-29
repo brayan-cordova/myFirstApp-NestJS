@@ -5,20 +5,21 @@ import {
   Param,
   ParseBoolPipe,
   ParseIntPipe,
+  Query,
   Req,
   Res,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { ValidateUserPipe } from './pipes/validate-user/validate-user.pipe';
 
 @Controller()
 export class HelloController {
-  @Get('/hello')
-  index(@Req() request: Request, @Res() response: Response) {
-    console.log(request.url);
-    response.status(200).json({
-      message: 'Hello World!',
-    });
-  }
+  // @Get('/hello')
+  // index(@Req() request: Request, @Res() response: Response) {
+  //   console.log(request.url);
+  //   response.status(200).json({
+  //     message: 'Hello World!',
+  //   });
+  // }
 
   @Get('new')
   @HttpCode(201)
@@ -48,5 +49,12 @@ export class HelloController {
   isUserActive(@Param('status', ParseBoolPipe) status: boolean) {
     console.log(typeof status);
     return status;
+  }
+
+  @Get('greet')
+  greet(@Query(ValidateUserPipe) query: { name: string; age: number }) {
+    console.log(typeof query.name);
+    console.log(typeof query.age);
+    return `Hello ${query.name}, you are ${query.age} years old`;
   }
 }
