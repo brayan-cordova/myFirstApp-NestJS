@@ -30,6 +30,7 @@ async function bootstrap() {
   //   origin: 'http://localhost:4200',
   // });
 
-  console.log(`Application is running on port: ${3000}`);
+  await app.listen(process.env.PORT || 3000);
+  console.log(`App is running on port: ${process.env.PORT}`);
 }
 bootstrap();
