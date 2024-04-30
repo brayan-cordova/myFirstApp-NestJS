@@ -19,3 +19,7 @@ docker compose up -d <!-- Launch a PostgreSQL Database -->
 ## Documentation win Swagger
 
 Paste on your Browser the next URL `http://localhost:3000/documentation`
+
+## Build to Production
+
+Run the command `npm run build`
